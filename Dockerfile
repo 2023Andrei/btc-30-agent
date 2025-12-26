@@ -1,7 +1,15 @@
 FROM python:3.11-slim
-RUN apt-get update && apt-get install -y gcc g++ make && rm -rf /var/lib/apt/lists/*
+
+# ставим только wget
+RUN apt-get update && apt-get install -y wget && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
+
+# качаем готовый wheel для Python 3.11 x86_64
+RUN wget https://github.com/mrjb/ta-lib-wheels/releases/download/0.4.27/TA_Lib-0.4.27-cp311-cp311-manylinux_2_28_x86_64.whl -O ta_lib.whl
+
 COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install ta_lib.whl && pip install -r requirements.txt
+
 COPY main.py .
 CMD ["python","main.py"]
