@@ -1,3 +1,2 @@
---extra-index-url https://mrjb.github.io/ta-lib-wheels/
 ccxt==4.2.18
-TA-Lib==0.4.27
+talib-stream==0.4.2          # чистый Python, без компиляции
