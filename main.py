@@ -1,6 +1,6 @@
 import os, time, ccxt
 from datetime import datetime
-import ta
+import talib as ta
 
 EXCHANGE = ccxt.binance({
     'apiKey': os.getenv('BINANCE_KEY'),
